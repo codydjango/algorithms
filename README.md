@@ -1,3 +1,3 @@
 # Algorithms
 
-Collection of algorithms
+Learning algorithms from scratch

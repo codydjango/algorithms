@@ -1,8 +1,5 @@
 #! /usr/bin/env python3
 
-import random
-import sys
-
 # also known as chopsearch, binary chop, logarithmnic search, half-interval search.
 # this is good for sorted arrays, or arrays that have seen a rotation.
 # search by repeated diving the search in half

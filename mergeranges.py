@@ -7,26 +7,25 @@ import unittest
 
 # Tuples are immutable
 # Don't assume ranges are in order: sort by start key
+# Runs in O(n), plus the sort. Python uses timsort for sort, which has 
+# a time complexity of O(nlogn). So in total, we have O(n + nlogn), drop
+# the constants, O(nlogn).
 def merge_ranges(meetings):
     # sort list by start key
     meetings = sorted(meetings, key=lambda e:e[0])
-
-    # cast list of tuples into a list of mutable lists
-    meetings = [list(x) for x in meetings]
 
     # pop the first range and set it as the first
     # potentially extendable range.
     merged = [meetings.pop(0)]
     
-    for meeting in meetings:
-        if merged[-1][1] >= meeting[0]:
-            if meeting[1] > merged[-1][1]:
-                merged[-1][1] = meeting[1]
+    for meeting_start, meeting_end in meetings:
+        open_start, open_end = merged[-1]
+        if open_end >= meeting_start:
+            merged[-1] = (open_start, max(open_end, meeting_end))
         else:
-            merged.append(meeting)
+            merged.append((meeting_start, meeting_end))
     
-    # cast back to list of tuples
-    return [tuple(x) for x in merged]
+    return merged
 
 
 class Test(unittest.TestCase):

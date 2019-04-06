@@ -3,18 +3,14 @@ import unittest
 
 # O(n)
 def javascriptvalidator(string):
-    openers = set(["{", "(", "["])
-    closers = set(["}", ")", "]"])
-
     open_to_close = {
         "{": "}",
         "[": "]",
-        "(": ")",
-        "}": "{",
-        "]": "[",
-        ")": "(",
+        "(": ")"
     }
 
+    openers = set(open_to_close.keys())
+    closers = set(open_to_close.values())
     stack = []
 
     for char in string:

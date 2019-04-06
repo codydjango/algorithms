@@ -44,7 +44,20 @@ def binarysearchrecursive(arr, needle):
 
 
 # Iterative approach, no recursion
-# time complexity of O(nlogn), time complexity of O(n)
+# time complexity of O(logn), time complexity of O(n)
+# how many times do we half the array before we find the answer? worst case.
+# n * 1/2 * 1/2 * 1/2...= 1
+# n * (1/2)^x = 1
+# x is the amount of times we half the array until we find 1
+# n * (1^x/2^x) = 1
+# n * 1/2^x) = 1
+# n/2^x = 1
+# n/1 = 2^x
+# n = 2^x
+# log2N = log2 2^x # what power do we raise 2 to, to get 2^x?
+# log2N = x
+# drop the constants
+# logN
 def binarysearch(arr, needle):
     left = -1 
     right = len(arr)

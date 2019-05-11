@@ -2,7 +2,9 @@
 
 ## Request
 
-Http request is a "directive" text-based request, separated by CRLF (carriage return, line feed) divided into three blocks:
+Http request is a "directive" text-based request divided into three blocks. A CRLF (carriage return, line feed) (empty line) separates the head from the body.
+
+Start line and headers are referred to as "head", while the payload below the empty space is referred to as the "body".
 
 1. the request method, followed by path, followed by http protocol version
 2. header information giving server information about data requested
@@ -33,4 +35,7 @@ An http response is structured very similarly to an http request. It is formed o
 * Content-type: server telling browser the mimetype of the content and character set encoding
 * Content-encoding: server telling browser which encoding was used
 
-Source: https://developer.mozilla.org/en-US/docs/Web/HTTP/Session
+##### Sources: 
+
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/Session
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages

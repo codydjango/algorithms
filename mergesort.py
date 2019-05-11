@@ -1,8 +1,11 @@
 #! /usr/bin/env python3
 
-# runs in O(log n)
+import unittest
+
+# runs in O(log n), not in place though...
 def merge_halves(arr1, arr2):
     tmp = []
+
     while len(arr1) and len(arr2):
         if arr1[0] <= arr2[0]:
             tmp.append(arr1.pop(0))
@@ -28,7 +31,9 @@ def mergesort(arr):
     return merge_halves(mergesort(arr[:m]), mergesort(arr[m:]))
 
 
+class Test(unittest.TestCase):
+    def test_mergesort(self):
+        self.assertEqual(mergesort([1,4,3,2,5,9,8,7,6]), [1,2,3,4,5,6,7,8,9])
+
 if __name__ == '__main__':
-    arr = [1,4,3,2,5,9,8,7,6]
-    print('original', arr)
-    print('sorted', mergesort(arr))
+    unittest.main(verbosity=2)

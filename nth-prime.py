@@ -58,6 +58,7 @@ def sieve_of_eratosthenes(n):
             break
 
         # mark all multiples
+
         while (multiple + prime) < limit:
             multiple += prime
             sieve[multiple] = False # mark as composite
@@ -66,23 +67,22 @@ def sieve_of_eratosthenes(n):
     
 
 class Test(unittest.TestCase):
-    def x_test_trial_division(self):
+    def test_trial_division(self):
         self.assertEqual(trial_division(1), 2)
         self.assertEqual(trial_division(2), 3)
         self.assertEqual(trial_division(3), 5)
         self.assertEqual(trial_division(4), 7)
-        self.assertEqual(trial_division(10000), 104729)
-    #     # self.assertEqual(trial_division(100000), 1299709)
+        self.assertEqual(trial_division(10000), 104729)              # test in 0.889s
 
     def test_sieve(self):
-        # Ran 1 test in 0.048s
         self.assertEqual(sieve_of_eratosthenes(1), 2)
         self.assertEqual(sieve_of_eratosthenes(2), 3)
         self.assertEqual(sieve_of_eratosthenes(3), 5)
         self.assertEqual(sieve_of_eratosthenes(4), 7)
         self.assertEqual(sieve_of_eratosthenes(10), 29)
-        self.assertEqual(sieve_of_eratosthenes(10000), 104729)
-        # self.assertEqual(sieve_of_eratosthenes(100000), 1299709)
+        self.assertEqual(sieve_of_eratosthenes(10000), 104729)        # test in 0.056s
+        self.assertEqual(sieve_of_eratosthenes(100000), 1299709)      # test in 0.715s
+        self.assertEqual(sieve_of_eratosthenes(1000000), 15485863)    # test in 8.828s
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

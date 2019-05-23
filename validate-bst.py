@@ -20,7 +20,7 @@ def validate_bst(node, min_value=None, max_value=None):
     if node == None:
         return True
     
-    if node.value < min_value or node.value > max_value:
+    if node.value <= min_value or node.value >= max_value:
         return False
     
     return validate_bst(node.left_node, min_value, node.value) and validate_bst(node.right_node, node.value, max_value)
@@ -71,7 +71,7 @@ class Test(unittest.TestCase):
         node.add_left_node(6)
         self.assertFalse(validate_bst(root))
     
-    def test_validate5(self):
+    def test_validate6(self):
         root = Node(10)
         node = root.add_left_node(5)
         node.add_left_node(4)
@@ -79,12 +79,17 @@ class Test(unittest.TestCase):
         root.add_right_node(11)
         self.assertTrue(validate_bst(root))
     
-    def test_validate5(self):
+    def test_validate7(self):
         root = Node(10)
         node = root.add_left_node(5)
         right_node = root.add_right_node(25)
         right_node = right_node.add_right_node(27)
         right_node = right_node.add_left_node(24)
+        self.assertFalse(validate_bst(root))
+    
+    def test_validate8(self):
+        root = Node(1)
+        root.add_left_node(1)
         self.assertFalse(validate_bst(root))
 
     

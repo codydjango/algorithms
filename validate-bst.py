@@ -2,6 +2,7 @@
 
 import unittest
 import sys
+from collections import deque
 
 # The BST property is that every node on the left subtree has to be smaller than the 
 # current node and every every node on the right subtree has to be larger than the current node.
@@ -12,7 +13,10 @@ import sys
 # The correct solution is to be passing along a context range that shrinks with each iteration
 # or recursion. That context enables us to check that the subtree is always according to the
 # BST property.
-def validate_bst(node, min_value=None, max_value=None):
+
+# Runtime: 52 ms, faster than 89.79% of Python3 online submissions for Validate Binary Search Tree.
+# Memory Usage: 15.6 MB, less than 67.36% of Python3 online submissions for Validate Binary Search Tree.
+def validate_bst_recursive(node, min_value=None, max_value=None):
     if not (min_value and max_value):
         min_value = -sys.maxsize-1
         max_value = sys.maxsize
@@ -25,6 +29,32 @@ def validate_bst(node, min_value=None, max_value=None):
     
     return validate_bst(node.left_node, min_value, node.value) and validate_bst(node.right_node, node.value, max_value)
 
+# Runtime: 48 ms, faster than 97.72% of Python3 online submissions for Validate Binary Search Tree.
+# Memory Usage: 15.6 MB, less than 75.85% of Python3 online submissions for Validate Binary Search Tree.
+def validate_bst_iterative(node, min_value=None, max_value=None):
+    if not (min_value and max_value):
+        min_value = -sys.maxsize-1
+        max_value = sys.maxsize
+
+    nodes = deque()
+    nodes.append((node, min_value, max_value))
+
+    while len(nodes) > 0:
+        node, min_value, max_value = nodes.popleft()
+
+        if node == None:
+            continue
+        
+        if node.value <= min_value or node.value >= max_value:
+            return False
+        
+        nodes.append((node.left_node, min_value, node.value))
+        nodes.append((node.right_node, node.value, max_value))
+    
+    return True
+
+
+validate_bst = validate_bst_iterative
 
 class Node():
     def __init__(self, value):

@@ -27,6 +27,15 @@ def rebalance(mnhp, mxhp):
         else:
             heappush(mnhp, 0 - heappop(mxhp))
 
+# This problem is solved using two heap, a min a max that are continually rebalanced 
+# according to the running median. If we knew the median up front (calculated using a linear time
+# algorithm on an initial list), then we could avoid the rebalancing. Rebalance whenever a heap
+# has more than 1 item than the other.
+# Use the min heap for items above the median, and the max heap for items below the median. This way
+# when we pop we always the value closest to the median.
+#
+# A median is calculated by taking the middle value (in an odd-numbered list), or the average of the 
+# two middle values (in an equal-numbered list).
 def running_medium(vals):
     mnhp = []
     mxhp = []

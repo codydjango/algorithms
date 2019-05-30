@@ -56,7 +56,7 @@ def running_medium(vals):
         median = get_median(mnhp, mxhp)
 
         results.append(median)
-    
+        
     return results
 
 
@@ -105,6 +105,12 @@ class Test(unittest.TestCase):
         actual = running_medium([2, 1, 5, 7, 2, 0, 5])
         expects = [2, 1.5, 2, 3.5, 2, 2, 2]
         self.assertEqual(actual, expects)
+    
+    def test_running_medium6(self):
+        actual = running_medium([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        expects = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
+        self.assertEqual(actual, expects)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
